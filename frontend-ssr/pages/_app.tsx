@@ -1,4 +1,5 @@
 import { Provider } from 'react-redux';
+import LogRocket from 'logrocket';
 import { createStoreWithPreloadedData } from '~/redux/store';
 import { defaultUserState } from '~/redux/user/user.reducer';
 
@@ -11,6 +12,10 @@ export default function MyApp({ Component, pageProps }: any) {
       info: pageProps.user,
     },
   });
+
+  if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
+    LogRocket.init('ijivpy/frontendro');
+  }
 
   return (
     <Provider store={store}>
