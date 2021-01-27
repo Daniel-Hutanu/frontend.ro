@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import LogRocket from 'logrocket';
 import { createStoreWithPreloadedData } from '~/redux/store';
@@ -13,9 +14,11 @@ export default function MyApp({ Component, pageProps }: any) {
     },
   });
 
-  if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
-    LogRocket.init('ijivpy/frontendro');
-  }
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'production') {
+      LogRocket.init('ijivpy/frontendro');
+    }
+  });
 
   return (
     <Provider store={store}>
