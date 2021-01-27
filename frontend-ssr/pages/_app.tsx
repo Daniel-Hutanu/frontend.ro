@@ -16,7 +16,7 @@ export default function MyApp({ Component, pageProps }: any) {
   useEffect(() => {
     if (process.env.NODE_ENV === 'production') {
       const runLogRocket = async () => {
-        const LogRocket = await import('logrocket');
+        const LogRocket = (await import('logrocket')).default;
         LogRocket.init('ijivpy/frontendro');
       };
       runLogRocket();
