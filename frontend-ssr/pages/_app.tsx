@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
-import LogRocket from 'logrocket';
 import { createStoreWithPreloadedData } from '~/redux/store';
 import { defaultUserState } from '~/redux/user/user.reducer';
 
@@ -16,7 +15,11 @@ export default function MyApp({ Component, pageProps }: any) {
 
   useEffect(() => {
     if (process.env.NODE_ENV === 'production') {
-      LogRocket.init('ijivpy/frontendro');
+      const runLogRocket = async () => {
+        const LogRocket = await import('logrocket');
+        LogRocket.init('ijivpy/frontendro');
+      };
+      runLogRocket();
     }
   });
 
